@@ -1,0 +1,16 @@
+- project:
+    check:
+      jobs:
+        - dci-rpm-build-el8
+
+    gate:
+      jobs:
+        - dci-rpm-build-el8
+
+    dci-post:
+      queue: dci
+      jobs:
+        - dci-rpm-build-el8
+        - dci-rpm-publish:
+            dependencies:
+              - dci-rpm-build-el8
